@@ -11,7 +11,9 @@ Add ```127.0.0.1 example.com``` to your host file
 
 #### Enable SSL
 Add ```server.key``` and ```server.cert``` under **apache/ssl** and 
-then uncomment lines 8 and 9 at apache/Dockerfile
+then uncomment:
+- lines 8 and 9 at apache/Dockerfile
+- lines 38,39 and 40 at apache/httpd-vhosts.conf
 
 <br/>
 
