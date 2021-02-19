@@ -1,11 +1,7 @@
-## apache
+## development playground on docker
 
-## elk
-
-##### The vm_map_max_count setting should be set permanently in /etc/sysctl.conf:
-
-grep vm.max_map_count /etc/sysctl.conf
-
-vm.max_map_count=262144
-
-To apply the setting on a live system type: sysctl -w vm.max_map_count=262144
+### containers
+- apache 2.4
+- php-fpm 7.4
+- mysql 8.0
+- redis 6.0
