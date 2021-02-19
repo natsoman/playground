@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+
+    apache:
+        container_name: apache
+        build:
+            context: "./apache"
+        image: natso/apache:latest
+        volumes:
+            - ${HOST_WORK_DIR}:/usr/local/apache2/htdocs
+        ports:
+            - "80:80"
+            - "443:443"
+
+    php-fpm:
+        container_name: php-fpm
+        build:
+            context: "./php-fpm"
+        image: natso/php-fpm:latest
+        volumes:
+            - ${HOST_WORK_DIR}:/var/www
+        environment:
+            - PHP_IDE_CONFIG=serverName=webserver-docker
+            - XDEBUG_CONFIG=remote_host=${HOST_IP} remote_port=9000
+            - HOST_IP=${HOST_IP}
+
+    mysql:
+        container_name: mysql
+        build:
+            context: "./mysql"
+        environment:
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        image: natso/mysql:latest
+        volumes:
+            - mysql-dir:/var/lib/mysql
+        ports:
+            - "3306:3306"
+
+    redis:
+        container_name: redis
+        build:
+            context: "./redis"
+        image: natso/redis:latest
+        ports:
+            - "6379:6379"
+
+volumes:
+    mysql-dir:
