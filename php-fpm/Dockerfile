@@ -1,7 +1,6 @@
 FROM php:7.4.3-fpm
 
-RUN apt-get update && apt-get install -y \
-    && librdkafka-dev
+RUN apt-get update && apt-get install -y librdkafka-dev
 
 # kafka ext
 RUN pecl install rdkafka \
